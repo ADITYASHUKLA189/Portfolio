@@ -1,415 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Name | Portfolio</title>
-  <style>
-    :root {
-      --primary: #1e90ff;
-      --accent: #ffe082;
-      --bg: #10131a;
-      --text: #f9f9f9;
-      --card-bg: #181c25;
-      --shadow: 0 6px 24px rgba(30,144,255,0.12);
-      --transition: 0.3s cubic-bezier(.4,2,.6,1);
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background var(--transition), color var(--transition);
-      overflow-x: hidden;
-    }
-
-    header {
-      background: linear-gradient(120deg, #1e90ff 0%, #00bfff 100%);
-      color: #fff;
-      padding-bottom: 40px;
-      box-shadow: var(--shadow);
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 10vw;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      font-size: 2.2rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      color: var(--accent);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li a, #toggle-theme {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1.1rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color var(--transition);
-    }
-
-    nav ul li a:hover, #toggle-theme:hover {
-      color: var(--accent);
-    }
-
-    .hero {
-      text-align: center;
-      margin-top: 56px;
-      padding: 0 5vw;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #ffe082, #1e90ff, #00bfff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      font-size: clamp(2rem, 8vw, 3.2rem);
-      font-weight: 900;
-      letter-spacing: 2px;
-      line-height: 1.1;
-    }
-
-    .subtitle {
-      font-size: 1.4rem;
-      margin: 18px 0 28px 0;
-    }
-
-    .highlight {
-      color: var(--accent);
-      font-weight: bold;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--primary);
-      padding: 14px 38px;
-      border-radius: 28px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 16px rgba(255,224,130,0.16);
-      transition: background var(--transition), color var(--transition), box-shadow var(--transition);
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: #fff;
-      color: var(--primary);
-      box-shadow: 0 8px 32px rgba(30,144,255,0.14);
-    }
-
-    main {
-      padding: 0 10vw;
-    }
-
-    section {
-      margin: 64px 0;
-      background: var(--card-bg);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 48px 32px;
-      transition: background var(--transition);
-    }
-
-    section h2 {
-      font-size: 2.1rem;
-      margin-bottom: 32px;
-      color: var(--primary);
-      letter-spacing: 1px;
-    }
-
-    .bento-grid .projects-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .project-card {
-      background: #161a23;
-      border-radius: 14px;
-      box-shadow: 0 2px 12px rgba(30,144,255,0.10);
-      padding: 32px 24px;
-      transition: transform 0.2s cubic-bezier(.4,2,.6,1), box-shadow var(--transition);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      will-change: transform;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px) scale(1.04) rotate(-1deg);
-      box-shadow: 0 8px 32px rgba(30,144,255,0.18);
-    }
-
-    .project-img {
-      width: 100%;
-      height: 120px;
-      background: linear-gradient(135deg, #1e90ff 60%, #ffe082 100%);
-      border-radius: 10px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 12px rgba(30,144,255,0.10);
-    }
-
-    .project-card h3 {
-      margin-bottom: 10px;
-      color: var(--accent);
-      font-size: 1.3rem;
-    }
-
-    .project-card p {
-      flex-grow: 1;
-    }
-
-    .project-card a {
-      color: var(--primary);
-      text-decoration: underline;
-      font-weight: 500;
-      margin-top: 12px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    input, textarea {
-      border: none;
-      border-radius: 8px;
-      padding: 12px;
-      font-size: 1rem;
-      background: #23263a;
-      color: var(--text);
-      resize: none;
-    }
-
-    input:focus, textarea:focus {
-      outline: 2px solid var(--primary);
-    }
-
-    footer {
-      text-align: center;
-      padding: 28px 0;
-      background: #181c25;
-      color: #fff;
-      border-radius: 0 0 18px 18px;
-      margin-top: 48px;
-      font-size: 1rem;
-    }
-
-    /* Animations */
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1.2s forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    /* Dark/Light Theme Toggle */
-    body.light {
-      --bg: #f9f9f9;
-      --text: #10131a;
-      --card-bg: #fff;
-      --shadow: 0 6px 24px rgba(30,144,255,0.06);
-    }
-
-    body.light header {
-      color: #10131a;
-    }
-
-    body.light .logo {
-      color: var(--primary);
-    }
-
-    body.light .project-card {
-      background: #f1f8ff;
-    }
-
-    body.light footer {
-      background: #e3f2fd;
-      color: #10131a;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1100px) {
-      nav {
-        padding: 18px 4vw;
-      }
-      main {
-        padding: 0 4vw;
-      }
-    }
-
-    @media (max-width: 900px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 14px 4vw;
-      }
-      .hero {
-        margin-top: 36px;
-      }
-      section {
-        padding: 32px 10px;
-      }
-      .bento-grid .projects-container {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .logo {
-        font-size: 1.3rem;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        align-items: flex-start;
-      }
-      .hero h1 {
-        font-size: 1.3rem;
-      }
-      .hero {
-        padding: 0 2vw;
-      }
-      section {
-        margin: 24px 0;
-        padding: 14px 2px;
-      }
-      .project-card {
-        padding: 12px 4px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+ 
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="logo">Aditya Shukla</div>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li>
-          <button id="toggle-theme" aria-label="Toggle dark mode">🌙</button>
-        </li>
-      </ul>
-    </nav>
-    <div class="hero">
-      <h1>
-        <span style="color: rgb(120, 101, 101) !important;">Hi, I'm Aditya Shukla</span>
+    <img class="image-gradient" src="gradient.png" alt="gradient">
+    <div class="layer-blur"></div>
+    
+  <div class="container">
+              <header>
+                  <h1 data-aos="fade-down" data-aos-duration="1500" class="logo">Aditya Shukla</h1>
+                  <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+                  <nav class="nav-links" id="navLinks">
+                      <a href="#about" data-aos="fade-down" data-aos-duration="2000">About</a>
+                      <a href="#project" data-aos="fade-down" data-aos-duration="2500">Projects</a>
+                      <a href="#skills" data-aos="fade-down" data-aos-duration="3000">Skills</a>
+                      <a href="#services" data-aos="fade-down" data-aos-duration="3000">Services</a>
+                      <a href="#contact" data-aos="fade-down" data-aos-duration="3500">Contact</a>
+                  </nav>
+              </header>
+       
+              <main>
+                  <div class="content">
+                   <div data-aos="fade-zoom-in"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="300"
+                    data-aos-offset="0" data-aos-duration="1000" class="tag-box">
+                     <div class="tag">About Me △</div>
+                   </div>
+              
+                   <h1 data-aos="fade-zoom-in"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="300"
+                    data-aos-offset="0" data-aos-duration="1500" >Aspiring software engineer</h1>
+                   <p data-aos="fade-zoom-in"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="300"
+                    data-aos-offset="0" data-aos-duration="2000" class="description">
+                     I blend technology, art, and empathy to design interfaces that surprise and delight.<br>
+                     My work is driven by curiosity and a passion for next-gen user experiences.
+                   </p>
+                   </div>
+                </main>
+                <spline-viewer data-aos="fade-zoom-in"
+                  data-aos-easing="ease-in-back"
+                  data-aos-delay="300"
+                 data-aos-offset="0" data-aos-duration="1500" class="robot-3d" url="https://prod.spline.design/IpPvsPR4infdT2mz/scene.splinecode">
+               </spline-viewer>
+  </div>
 
-      </h1>
-      <p class="subtitle">Crafting <span class="highlight">unexpected</span> digital experiences.</p>
-      <a href="#projects" class="btn">See My Work</a>
-    </div>
-  </header>
 
-  <main>
-    <section id="about" class="fade-in">
-      <h2>About Me</h2>
-      <p>
-        I blend technology, art, and empathy to design interfaces that surprise and delight. My work is driven by curiosity and a passion for next-gen user experiences.
-      </p>
-    </section>
+  <div class="projects">
+                  <div class="content">
+                         <div data-aos="fade-zoom-in"
+                           data-aos-easing="ease-in-back"
+                           data-aos-delay="300"
+                           data-aos-offset="0" data-aos-duration="1000" class="tag-box">
+                         <div class="tag">Projects △</div>
+                  </div>
 
-    <section id="projects" class="bento-grid">
-      <h2>Projects</h2>
-      <div class="projects-container">
-        <div class="project-card tilt">
-          <div class="project-img"></div>
-          <h3>E-Commerce Project</h3>
-          <p>Modern online store with responsive design, product listings, and dynamic cart functionality using HTML, CSS, and JavaScript.</p>
-          <a href="https://github.com/ADITYASHUKLA189/e-commerce-project">View on GitHub</a>
+                  <div class="grid-container">
+                        <div class="card">
+                          <img src="WhatsApp Image 2025-07-29 at 23.37.34_2da35a6a.jpg" alt="">
+                          <h2>Project One</h2>
+                          <p>Immersive Ecommerce website for real-time data visualization.</p>
+                          <a href="https://adityashukla189.github.io/e-commerce-project/"  style="color: white;"">View on GitHub</a>
+                        </div>
+                        <div class="card">
+                          <img src="image.png" alt="">
+                          <h2>Project Two</h2>
+                          <p>Immersive 3D portfolio for real-time data visualization.</p>
+                          <a href="#" style=" color:white;">View on GitHub</a>
+                        </div>
+                        <div class="card">
+                          <img src="https://imgs.search.brave.com/znD2oBCKeP-vq8Bogbe70Yq9ualjKxWSw-kjlP6r9o0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9zaWxob3VldHRl/LW9mLXlvdW5nLWJs/b25kZS13aXRoLXNo/b3J0LWhhaXItb24t/b3JhbmdlLWJhY2tn/cm91bmQtZnJlZS1p/bWFnZS5qcGVnP2g9/ODAwJnF1YWxpdHk9/ODA" alt="">
+                          <h2>Project Three</h2>
+                          <p>Immersive 3D dashboard for real-time data visualization.</p>
+                          <a href="#" style="color: white;">View on GitHub</a>
+                        </div>
+                        <div class="card">
+                          <img src="https://imgs.search.brave.com/znD2oBCKeP-vq8Bogbe70Yq9ualjKxWSw-kjlP6r9o0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9zaWxob3VldHRl/LW9mLXlvdW5nLWJs/b25kZS13aXRoLXNo/b3J0LWhhaXItb24t/b3JhbmdlLWJhY2tn/cm91bmQtZnJlZS1p/bWFnZS5qcGVnP2g9/ODAwJnF1YWxpdHk9/ODA" alt="">
+                          <h2>Project Four</h2>
+                          <p>Immersive 3D dashboard for real-time data visualization.</p>
+                          <a href="#" style="color: white;">View on GitHub</a>
+                        </div>
+                </div>   
+  </div>
+
+
+
+  <div class="skills">
+          <div class="content">
+              <div data-aos="fade-zoom-in"
+                data-aos-easing="ease-in-back"
+                data-aos-delay="300"
+                data-aos-offset="0" data-aos-duration="1000" class="tag-box">
+              <div class="tag">Skills △</div>
+          </div>
+
+          <div class="grid-container">
+                        <div class="card">
+                          <h2>Full Stack Development</h2>
+                          <p>Expert in HTML,Mongodb,react, CSS, nodejs, and JavaScript, crafting responsive, high-performance websites.</p>
+                           <div class="image"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="icon" alt="HTML" />
+                           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="icon" alt="JS" />
+                           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" class="icon" alt="Angular" />
+                           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" class="icon" alt="Vue" />
+                           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="icon" alt="React" />
+                           </div>
+                        </div>
+                        <div class="card">
+                          <h2>Competitive Programming</h2>
+                          <p>Sharpening logic and problem-solving with data structures, algorithms. I specialize in optimizing code under time pressure.</p>
+                          <div class="image">
+                               <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" class="icon" alt="LeetCode">
+                               <img src="https://sta.codeforces.com/s/61100/images/codeforces-logo-with-telegram.png" class="icon" alt="Codeforces">
+                               <img src="https://img.icons8.com/color/48/000000/c-plus-plus-logo.png" class="icon" alt="C++">
+                          </div>
+                        </div>
+          </div>             
+
+  </div>
+
+  <div class="services">
+           <div class="content">
+              <div data-aos="fade-zoom-in"
+                data-aos-easing="ease-in-back"
+                data-aos-delay="300"
+                data-aos-offset="0" data-aos-duration="1000" class="tag-box">
+              <div class="tag">Services △</div>
+          </div>
+
+            <div class="grid-container">
+                 <div class="card">
+                   <h2> Full Stack Development Services</h2>
+                   <ul>
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Web & Mobile Application Development.</li>
+                    <p style="color: rgb(225, 225, 225);">Build full-featured web apps, dashboards, B2B/B2C portals, and cross‑platform mobile apps using React, Node.js (MERN/MEAN/etc.), MongoDB, Express, Angular/Vue, and JavaScript/TypeScript.</p>
+
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Custom Software Development.</li>
+                    <p style="color: rgb(225, 225, 225);">Design bespoke software tailored to unique business processes—like ERP systems, internal tools, analytics dashboards, or content platforms.</p>
+
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Frontend & Backend Engineering.</li>
+                    <p style="color: rgb(225, 225, 225);">Deliver intuitive, responsive UI/UX front ends, and pair them with secure, performant server-side logic (APIs, business logic, user interface frameworks).</p>
+
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Database Design & Management.</li>
+                    <p style="color: rgb(225, 225, 225);">Plan, implement, optimize, and migrate scalable database systems using NoSQL (MongoDB) or SQL (MySQL, PostgreSQL).</p>
+
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">DevOps, CI/CD & Cloud Deployment.</li>
+                    <p style="color: rgb(225, 225, 225);">Automate testing and deployment pipelines using Docker, Jenkins, AWS/Azure/GCP, and CI/CD tools for seamless production delivery.</p>
+                   </ul>
+                 </div>
+                 <div class="card">
+                   <h2>Competitive Programming / Coding & Logic Services</h2>
+                   <ul>
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Problem Solving & Algorithm Design.</li>
+                    <p style="color: rgb(225, 225, 225);">Help learners level up by organizing regular competitive problem-solving sessions or one-on-one mentorship.</p>
+
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Code Reviews & Feedback.</li>
+                    <p style="color: rgb(225, 225, 225);">Provide detailed evaluations of solutions submitted on platforms like CodeChef, LeetCode, or HackerRank. You can explain optimizations, logic errors, and performance improvements.</p>
+
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Mock Coding Contests & Timed Practice</li>
+                    <p style="color: rgb(225, 225, 225);">Simulate timed contests (similar to CodeChef or LeetCode weekly challenges) to help users prepare for coding rounds or rapid hikes in performance.</p>
+
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Interview & Technical Prep Coaching.</li>
+                    <p style="color: rgb(225, 225, 225);">Conduct mock interviews with real-time problem-solving and feedback loops. Ideal for candidates preparing for tech interview rounds.</p>
+
+                    <li style="text-decoration:underline; color: rgb(255, 255, 255);">Content Creation.</li>
+                    <p style="color: rgb(225, 225, 225);">Develop blog posts, tutorials, or video walkthroughs explaining non-trivial problems, algorithmic patterns, and approach reasoning.</p>
+                   </ul>
+                 </div>
+          </div> 
+
+  </div>
+
+
+  <div class="contact">
+        <div class="content">
+              <div data-aos="fade-zoom-in"
+                data-aos-easing="ease-in-back"
+                data-aos-delay="300"
+                data-aos-offset="0" data-aos-duration="1000" class="tag-box">
+              <div class="tag">Contact △</div>
         </div>
-        <div class="project-card tilt">
-          <div class="project-img"></div>
-          <h3>Project Two</h3>
-          <p>AI-powered portfolio generator with custom themes.</p>
-          <a href="#">View on GitHub</a>
-        </div>
-        <div class="project-card tilt">
-          <div class="project-img"></div>
-          <h3>Project Three</h3>
-          <p>Animated storytelling site with scroll-triggered effects.</p>
-          <a href="#">View on GitHub</a>
-        </div>
-      </div>
-    </section>
 
-    <section id="contact" class="fade-in">
-      <h2>Contact</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn">Send</button>
-      </form>
-      <p>Or email me at <a href="mailto:Shukladitya22@gmail.com">Shukladitya22@gmail.com</a></p>
-    </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Aditya Shukla. All rights reserved.</p>
-  </footer>
-  <script>
-    // Dark/Light Theme Toggle
-    const toggleBtn = document.getElementById('toggle-theme');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      toggleBtn.textContent = document.body.classList.contains('light') ? '🌞' : '🌙';
-    });
+         <div class="grid-container">
+                 <div class="card" id="card1">
+                   <h2>Write us</h2>
+                    <form class="contact-form">
+                      <input type="text" name="name" placeholder="Name" required />
+                      <input type="email" name="email" placeholder="Email" required />
+                      <input type="text" name="subject" placeholder="Subject" required />
+                      <textarea name="message" placeholder="Message" rows="5" required></textarea>
+                      <button type="submit">Send Message</button>
+                   </form>
+                 </div>
+                 
+                 <div class="card" id="card2">
+                   <h2>Contact Information</h2>
+                   <p>I am open for any suggestion or collaboration for projects.</p>
+                   <section class="contact-list">
+                     <div class="contact-item">
+                       <i class="fa-solid fa-location-dot"></i>
+                       <div class="contact-text">
+                         <h4>Address</h4>
+                         <p>
+                           IIIT bhubaneswar<br />
+                           Gothapatna, Bhubaneswar,odisha
+                         </p>
+                       </div>
+                       </div>
+                       <div class="contact-item">
+                         <i class="fa-solid fa-phone"></i>
+                         <div class="contact-text">
+                           <h4>Phone</h4>
+                           <p>+91 7303605613</p>
+                         </div>
+                       </div>
+                       <div class="contact-item">
+                         <i class="fa-solid fa-envelope"></i>
+                         <div class="contact-text">
+                           <h4>Email</h4>
+                           <p>shukladitya22@gmail.com</p>
+                         </div>
+                       </div>
+                       <div class="contact-item">
+                         <i class="fa-solid fa-globe"></i>
+                         <div class="contact-text">
+                           <h4>Website</h4>
+                           <p>shuklaji.com</p>
+                         </div>
+                       </div>
+                    </section>
+                 </div>
+          </div> 
 
-    // Simple fade-in animation for sections
-    window.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.fade-in').forEach(el => {
-        el.style.opacity = 1;
-      });
-    });
+  </div>
 
-    // 3D tilt effect for project cards
-    document.querySelectorAll('.tilt').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.transform = `perspective(600px) rotateY(${(x/rect.width-0.5)*10}deg) rotateX(${(0.5-y/rect.height)*10}deg) scale(1.04)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-  </script>
+
+
+
+
+
+
+
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+          AOS.init();
+        </script>
+        <script src="app.js"></script>
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.32/build/spline-viewer.js"></script>
 </body>
 </html>
