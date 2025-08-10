@@ -10,6 +10,7 @@
  
 </head>
 <body>
+  <div class="main-wrapper">
     <img class="image-gradient" src="gradient.png" alt="gradient">
     <div class="layer-blur"></div>
     
@@ -26,8 +27,8 @@
                   </nav>
               </header>
        
-              <main>
-                  <div class="content">
+              <main class="banner">
+                  <div class="content content-banner">
                    <div data-aos="fade-zoom-in"
                     data-aos-easing="ease-in-back"
                     data-aos-delay="300"
@@ -47,12 +48,15 @@
                      My work is driven by curiosity and a passion for next-gen user experiences.
                    </p>
                    </div>
-                </main>
-                <spline-viewer data-aos="fade-zoom-in"
+                   <div class="threed-view">
+                     <spline-viewer data-aos="fade-zoom-in"
                   data-aos-easing="ease-in-back"
                   data-aos-delay="300"
                  data-aos-offset="0" data-aos-duration="1500" class="robot-3d" url="https://prod.spline.design/IpPvsPR4infdT2mz/scene.splinecode">
                </spline-viewer>
+               </div>
+                </main>
+              
   </div>
 
 
@@ -249,7 +253,7 @@
 
 
 
-
+</div>
 
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>
@@ -257,5 +261,6 @@
         </script>
         <script src="app.js"></script>
         <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.32/build/spline-viewer.js"></script>
+        
 </body>
 </html>
